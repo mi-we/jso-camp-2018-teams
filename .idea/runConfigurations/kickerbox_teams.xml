@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="kickerbox-teams" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.zuehlke.jso.KickerboxTeamsServiceApplication" />
+    <module name="kickerbox-teams" />
+    <option name="PROGRAM_PARAMETERS" value="server" />
+    <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    <method />
+  </configuration>
+</component>
