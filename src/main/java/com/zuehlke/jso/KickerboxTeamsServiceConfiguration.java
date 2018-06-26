@@ -26,17 +26,12 @@ public class KickerboxTeamsServiceConfiguration extends Configuration {
         return jerseyClient;
     }
 
-    @JsonProperty("jerseyClient")
-    public void setJerseyClientConfiguration(JerseyClientConfiguration jerseyClient) {
-        this.jerseyClient = jerseyClient;
-    }
-
-    @JsonProperty
+    @JsonProperty("environment")
     public String getEnvironment() {
         return environment;
     }
 
-    @JsonProperty
+    @JsonProperty("databaseParameters")
     public DatabaseParameters getDatabaseParameters() {
         return databaseParameters;
     }

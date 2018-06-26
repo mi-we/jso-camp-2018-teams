@@ -1,13 +1,16 @@
 package com.zuehlke.jso;
 
+import com.zuehlke.jso.api.TeamRepository;
 import com.zuehlke.jso.resources.TeamsResource;
 import io.dropwizard.Application;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.jdbi3.JdbiFactory;
 import io.dropwizard.jdbi3.bundles.JdbiExceptionsBundle;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.jdbi.v3.core.Jdbi;
 
 import javax.ws.rs.client.Client;
 
@@ -37,7 +40,11 @@ public class KickerboxTeamsServiceApplication extends Application<KickerboxTeams
     public void run(final KickerboxTeamsServiceConfiguration configuration,
                     final Environment environment) {
         initializeRestClient(configuration, environment);
-        environment.jersey().register(new TeamsResource());
+
+        final JdbiFactory factory = new JdbiFactory();
+        final Jdbi jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
+        TeamRepository teamRepository = jdbi.onDemand(TeamRepository.class);
+        environment.jersey().register(new TeamsResource(teamRepository));
     }
 
     private void initializeRestClient(KickerboxTeamsServiceConfiguration configuration, Environment environment) {
