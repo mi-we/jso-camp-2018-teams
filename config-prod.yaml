@@ -1,9 +1,9 @@
-environment: local
+environment: prod
 
 databaseParameters:
   username: postgres
-  password: pw1234
-  url: jdbc:postgresql://localhost:5432/postgres
+  password:
+  url:
   driverClass: org.postgresql.Driver
 
 logging:
