@@ -11,3 +11,9 @@ Health Check
 ---
 
 To see your applications health enter url `http://localhost:8081/healthcheck`
+
+
+Deployment
+---
+Install and init gcloud. Afterwards it is as easy as:
+`gcloud app deploy`
