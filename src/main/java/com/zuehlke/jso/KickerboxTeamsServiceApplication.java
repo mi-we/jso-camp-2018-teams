@@ -39,18 +39,9 @@ public class KickerboxTeamsServiceApplication extends Application<KickerboxTeams
     @Override
     public void run(final KickerboxTeamsServiceConfiguration configuration,
                     final Environment environment) {
-        initializeRestClient(configuration, environment);
-
         final JdbiFactory factory = new JdbiFactory();
         final Jdbi jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
         TeamRepository teamRepository = jdbi.onDemand(TeamRepository.class);
         environment.jersey().register(new TeamsResource(teamRepository));
     }
-
-    private void initializeRestClient(KickerboxTeamsServiceConfiguration configuration, Environment environment) {
-        final Client client = new JerseyClientBuilder(environment).using(configuration.getJerseyClientConfiguration())
-                .build(getName());
-        RestClientHolder.setClient(client);
-    }
-
 }
