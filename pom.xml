@@ -60,6 +60,22 @@
             <groupId>org.jdbi</groupId>
             <artifactId>jdbi3-sqlobject</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.cloud.sql</groupId>
+            <artifactId>postgres-socket-factory</artifactId>
+            <version>1.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-sqladmin</artifactId>
+            <version>v1beta4-rev57-1.22.0</version>
+        </dependency>
     </dependencies>
 
     <build>
