@@ -18,6 +18,19 @@ public interface TeamRepository {
     @SqlBatch("INSERT INTO Member (name, fk_team) VALUES (:name, :teamId)")
     void insertTeamMembers(@Bind("teamId") long teamId, @Bind("name") List<String> members);
 
+    @SqlUpdate("UPDATE Team SET name = :name WHERE id = :id")
+    void updateTeamOnly(@BindBean Team team);
+
+    @SqlUpdate("DELETE FROM Member WHERE fk_team = :teamId")
+    void deleteTeamMembers(@Bind("teamId") long teamId);
+
+    @Transaction
+    default void updateTeam(Team team) {
+        updateTeamOnly(team);
+        deleteTeamMembers(team.getId());
+        insertTeamMembers(team.getId(), team.getMembers());
+    }
+
     @Transaction
     default long insertTeam(Team team) {
         long teamId = insertTeamOnly(team);
