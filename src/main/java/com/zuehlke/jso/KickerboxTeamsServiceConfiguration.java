@@ -67,7 +67,7 @@ public class KickerboxTeamsServiceConfiguration extends Configuration {
 
     private String retrieveParameter(String parameterName) {
         Response response = ClientBuilder.newClient()
-                .target("http://metadata.google.internal/computeMetadata/v1/project/attributes/:parameterName")
+                .target("http://metadata.google.internal/computeMetadata/v1/project/attributes/{parameterName}")
                 .resolveTemplate("parameterName", parameterName)
                 .request()
                 .header("Metadata-Flavor", "Google")
